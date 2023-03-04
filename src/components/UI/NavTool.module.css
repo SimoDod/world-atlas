@@ -1,0 +1,19 @@
+.container {
+    position: fixed;
+    display: flex;
+    top: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1%;
+    margin-top: .25rem;
+}
+
+.container p{
+    margin: 0;
+}
+
+.container select{
+    border-radius: 6px;
+    background-color: rgb(73, 184, 244);
+}

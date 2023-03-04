@@ -1,11 +1,17 @@
+import React, { useState } from 'react';
 import "./App.css";
 import MapChart from "./components/Map/MapChart";
-function App() {
+import NavTool from "./components/UI/NavTool";
 
+function App() {
+  const [selectedColor, setSelectedColor] = useState('green');
 
   return (
     <div className="App">
-      <MapChart />
+      <NavTool setSelectedColor={setSelectedColor}/>
+      <main>
+        <MapChart selectedColor={selectedColor}/>
+      </main>
     </div>
   );
 }

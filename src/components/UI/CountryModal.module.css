@@ -25,6 +25,10 @@
   overflow: scroll;
 }
 
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
 .header {
   position: fixed;
   display: flex;

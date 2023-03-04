@@ -4,6 +4,8 @@ import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import classes from "./CountryModal.module.css";
 
 const CountryModal = ({ setIsShowing, data }) => {
+  const [styles, setStyles] = useState({})
+
   const [countryName, setCountryName] = useState("Not specified");
   const [currency, setCurrency] = useState("Not specified");
   const [officialCountryName, setOfficialCountryName] =
@@ -45,11 +47,11 @@ const CountryModal = ({ setIsShowing, data }) => {
       getData();
     }
   }, [data]);
-
+  
   return (
     <Fragment>
       <div className={classes.backdrop}></div>
-      <div className={classes.modal}>
+      <div style={styles} className={classes.modal}>
         <header className={classes.header}>
           <h2>{countryName}</h2>
           <div className={classes.close_icon}>

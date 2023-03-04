@@ -16,15 +16,17 @@ import classes from "./MapChart.module.css";
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
-export default function MapChart() {
+export default function MapChart({ selectedColor }) {
+  const [styles, setStyles] = useState("green");
+
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [ctData, setCtData] = useState([]);
   const [isShowing, setIsShowing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+
   useEffect(() => {
     setIsLoading(true);
-
     const getCountries = async () => {
       const response = await fetch(
         `https://restcountries.com/v3.1/alpha/${selectedCountry["Alpha-2"]}`
@@ -44,12 +46,30 @@ export default function MapChart() {
     if (ctData.length > 0) {
       setSelectedCountry(null);
       setIsShowing(true);
-      
     }
     setIsLoading(false);
-    
-    
   }, [ctData]);
+
+  useEffect(() => {
+    switch (selectedColor) {
+      case "Gray":
+        setStyles("gray");
+        break;
+      case "Yellow":
+        setStyles("yellow");
+        break;
+      case "Green":
+        setStyles("green");
+        break;
+      case "Bisque":
+        setStyles("bisque");
+        break;
+        case "Magenta":
+          setStyles("magenta");
+      default:
+        break;
+    }
+  }, [selectedColor]);
 
   return (
     <>
@@ -57,11 +77,11 @@ export default function MapChart() {
       {isShowing && <CountryModal data={ctData} setIsShowing={setIsShowing} />}
       <ComposableMap width={800} height={500}>
         <ZoomableGroup>
-          <Geographies geography={geoUrl}>
+        <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => (
                 <Geography
-                  className={classes.country}
+                  className={classes[styles]}
                   onClick={() => setSelectedCountry(geo.properties)}
                   key={geo.rsmKey}
                   geography={geo}
