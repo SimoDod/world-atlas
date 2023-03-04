@@ -1,0 +1,88 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.75);
+  }
+  
+  .modal {
+    background-color: rgb(158, 151, 51);
+    border-radius: 6px;
+    position: fixed;
+    top: 5vh;
+    left: 10%;
+    width: 80%;
+    max-height: 90%;
+    z-index: 100;
+    overflow: scroll;
+  }
+  
+  .header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+    background-color: rgb(20, 135, 72);
+    border-radius: 6px;
+    padding: .5rem 0rem;
+    
+  }
+  
+  .header h2 {
+    margin: 0;
+    margin-left: 1rem;
+    color: #e4f5ff;
+  }
+  
+  .content {
+    padding: 1rem;
+    color: #e4f5ff;
+    margin-top: 2rem;
+  }
+  
+  .close_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+
+  .close_icon svg{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .modal_img {
+    display: flex;
+    justify-content: center;
+    margin-top: .5rem;
+  }
+
+  .modal_img img {
+    width: 95%;
+  }
+
+  .info_line {
+    
+  }
+
+  .span {
+    color: black;
+  }
+  
+  
+  @media (min-width: 768px) {
+    .modal {
+      left: calc(50% - 20rem);
+      width: 40rem;
+    }
+
+    .modal_img img {
+        width: 50%;
+      }
+    
+  }
