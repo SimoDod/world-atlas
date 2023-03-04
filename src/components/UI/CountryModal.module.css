@@ -9,12 +9,11 @@
 }
 
 .modal {
-  background: rgb(25, 148, 214);
   background: linear-gradient(
     90deg,
-    rgba(25, 148, 214, 1) 0%,
-    rgba(0, 212, 255, 1) 50%,
-    rgba(25, 148, 214, 1) 100%
+    #2c5f2dff 0%,
+    rgb(87, 186, 89) 50%,
+    #2c5f2dff 100%
   );
   border-radius: 6px;
   position: fixed;
@@ -31,12 +30,12 @@
   display: flex;
   justify-content: space-between;
   width: inherit;
-  background: rgb(25, 148, 214);
+
   background: linear-gradient(
     90deg,
-    rgba(25, 148, 214, 0.822) 0%,
-    rgba(0, 213, 255, 0.811) 50%,
-    rgba(25, 148, 214, 1) 100%
+    rgba(54, 116, 55, 0.823) 0%,
+    rgba(87, 186, 89, 0.845) 50%,
+    rgba(54, 116, 55, 0.823) 100%
   );
   border-radius: 6px;
   padding: 0.5rem 0rem;
@@ -55,6 +54,8 @@
 }
 
 .close_icon {
+  color: #d7862f;
+  
   display: flex;
   justify-content: center;
   align-items: center;

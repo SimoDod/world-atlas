@@ -4,48 +4,48 @@ import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import classes from "./CountryModal.module.css";
 
 const CountryModal = ({ setIsShowing, data }) => {
-  const [isDiff, setIsDiff] = useState(true);
+  const [countryName, setCountryName] = useState("Not specified");
+  const [currency, setCurrency] = useState("Not specified");
+  const [officialCountryName, setOfficialCountryName] =
+    useState("Not specified");
+  const [region, setRegion] = useState("Not specified");
+  const [subregion, setSubregion] = useState("Not specified");
+  const [capital, setCapital] = useState("Not specified");
+  const [area, setArea] = useState("Not specified");
+  const [coordinates, setCoordinates] = useState("Not specified");
+  const [flagImg, setFlagImg] = useState("Not specified");
+  const [population, setPopulation] = useState("Not specified");
+  const [bordersArr, setBordersArr] = useState("None");
 
-  const [countryName, setCountryName] = useState('Not specified');
-  const [currency, setCurrency] = useState('Not specified');
-  const [officialCountryName, setOfficialCountryName] = useState('Not specified');
-  const [region, setRegion] = useState('Not specified');
-  const [subregion, setSubregion] = useState('Not specified');
-  const [capital, setCapital] = useState('Not specified');
-  const [area, setArea] = useState('Not specified');
-  const [coordinates, setCoordinates] = useState('Not specified');
-  const [flagImg, setFlagImg] = useState('Not specified');
-  const [population, setPopulation] = useState('Not specified');
-  const [bordersArr, setBordersArr] = useState('Not specified');
-  
   const clickHandler = () => setIsShowing(false);
 
-  const getData = () => {
-    setCountryName(data[0].name.common);
-    setOfficialCountryName(data[0].name.official);
-    setRegion(data[0].region);
-    setSubregion(data[0].subregion);
-    setCapital(data[0].capital);
-    setPopulation(data[0].population);
-    setArea(data[0].area);
-    setCoordinates(data[0].latlng.join(", "));
-    setFlagImg(data[0].flags.png);
-    setIsDiff(true);
-  };
   useEffect(() => {
+    const getData = () => {
+      setCountryName(data[0].name.common);
+      setOfficialCountryName(data[0].name.official);
+      setRegion(data[0].region);
+      setSubregion(data[0].subregion);
+      setCapital(data[0].capital);
+      setPopulation(data[0].population);
+      setArea(data[0].area);
+      setCoordinates(data[0].latlng.join(", "));
+      setFlagImg(data[0].flags.png);
+
+      if (data[0].borders) {
+        setBordersArr(data[0].borders.join(", "));
+      }
+
+      if (data[0].currencies) {
+        const currencyKey = Object.keys(data[0].currencies);
+        setCurrency(data[0].currencies[currencyKey].name);
+      }
+    };
+
     if (data.length > 0) {
       getData();
     }
   }, [data]);
 
-  useEffect(() => {
-    if (!isDiff) {
-      const currencyKey = Object.keys(data[0].currencies);
-      setCurrency(data[0].currencies[currencyKey].name);
-      setBordersArr(data[0].borders.join(", "));
-    }
-  }, [isDiff])
-  
   return (
     <Fragment>
       <div className={classes.backdrop}></div>
