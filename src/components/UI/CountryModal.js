@@ -28,7 +28,7 @@ const CountryModal = ({ setIsShowing, data }) => {
       setCapital(data[0].capital);
       setPopulation(data[0].population);
       setArea(data[0].area);
-      setCoordinates(data[0].latlng.join(", "));
+      setCoordinates(data[0].latlng);
       setFlagImg(data[0].flags.png);
 
       if (data[0].borders) {
@@ -101,7 +101,7 @@ const CountryModal = ({ setIsShowing, data }) => {
           </p>
           <p className={classes.info_line}>
             <span className={classes.span}>Coordinates: </span>
-            {coordinates}
+            Latitude: {coordinates[0]} / Longitude: {coordinates[1]}
           </p>
         </main>
       </div>

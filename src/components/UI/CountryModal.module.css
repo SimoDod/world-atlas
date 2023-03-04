@@ -76,9 +76,11 @@
 
 .modal_img img {
   width: 95%;
+  border: 1px solid rgba(0, 0, 0, 0.43);
 }
 
 .info_line {
+  color: #faece4;
 }
 
 .span {
