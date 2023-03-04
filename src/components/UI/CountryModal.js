@@ -1,32 +1,53 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import classes from "./CountryModal.module.css";
 
 const CountryModal = ({ setIsShowing, data }) => {
+  const [isDiff, setIsDiff] = useState(true);
+
+  const [countryName, setCountryName] = useState('Not specified');
+  const [currency, setCurrency] = useState('Not specified');
+  const [officialCountryName, setOfficialCountryName] = useState('Not specified');
+  const [region, setRegion] = useState('Not specified');
+  const [subregion, setSubregion] = useState('Not specified');
+  const [capital, setCapital] = useState('Not specified');
+  const [area, setArea] = useState('Not specified');
+  const [coordinates, setCoordinates] = useState('Not specified');
+  const [flagImg, setFlagImg] = useState('Not specified');
+  const [population, setPopulation] = useState('Not specified');
+  const [bordersArr, setBordersArr] = useState('Not specified');
+  
   const clickHandler = () => setIsShowing(false);
 
-  if (!data[0]) return;
+  const getData = () => {
+    setCountryName(data[0].name.common);
+    setOfficialCountryName(data[0].name.official);
+    setRegion(data[0].region);
+    setSubregion(data[0].subregion);
+    setCapital(data[0].capital);
+    setPopulation(data[0].population);
+    setArea(data[0].area);
+    setCoordinates(data[0].latlng.join(", "));
+    setFlagImg(data[0].flags.png);
+    setIsDiff(true);
+  };
+  useEffect(() => {
+    if (data.length > 0) {
+      getData();
+    }
+  }, [data]);
 
-  const countryName = data[0].name.common;
-
-  /* to fix antarctica */
-  if (countryName === "Antarctica") return;
-  const officialCountryName = data[0].name.official;
-  const region = data[0].region;
-  const subregion = data[0].subregion;
-  const capital = data[0].capital;
-  const population = data[0].population;
-  const area = data[0].area;
-  const currencyKey = Object.keys(data[0].currencies);
-  const currency = data[0].currencies[currencyKey].name;
-  const coordinates = data[0].latlng.join(', ');
-  const flagImg = data[0].flags.png;
-  const bordersArr = data[0].borders.join(", ");
-
+  useEffect(() => {
+    if (!isDiff) {
+      const currencyKey = Object.keys(data[0].currencies);
+      setCurrency(data[0].currencies[currencyKey].name);
+      setBordersArr(data[0].borders.join(", "));
+    }
+  }, [isDiff])
+  
   return (
     <Fragment>
-      
       <div className={classes.backdrop}></div>
       <div className={classes.modal}>
         <header className={classes.header}>

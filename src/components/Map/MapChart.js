@@ -19,7 +19,7 @@ const geoUrl =
 export default function MapChart() {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [ctData, setCtData] = useState([]);
-  const [isShowing, setIsShowing] = useState(true);
+  const [isShowing, setIsShowing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -41,8 +41,14 @@ export default function MapChart() {
   }, [selectedCountry]);
 
   useEffect(() => {
-    setSelectedCountry(null);
-    setIsShowing(true);
+    if (ctData.length > 0) {
+      setSelectedCountry(null);
+      setIsShowing(true);
+      
+    }
+    setIsLoading(false);
+    
+    
   }, [ctData]);
 
   return (
