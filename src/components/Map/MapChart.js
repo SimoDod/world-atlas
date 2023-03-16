@@ -71,6 +71,7 @@ export default function MapChart({ selectedColor }) {
     }
   }, [selectedColor]);
 
+
   return (
     <>
       {isLoading && <div className={classes.loading_screen_div}></div>}
